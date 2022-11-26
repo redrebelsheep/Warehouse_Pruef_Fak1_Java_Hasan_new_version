@@ -1,6 +1,5 @@
 package vw.vorbereitung.warehouse.basketItem.model;
 
-import javafx.beans.property.IntegerProperty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -20,10 +19,6 @@ public class BasketItemDocument {
     @Id
     private Long id;
 
-    /** The basket item database ID. */
-    //Attributes
-    private int basketItemDatabaseID;
-
     /** The item number. */
     private int itemNumber;
 
@@ -40,6 +35,6 @@ public class BasketItemDocument {
     private String manufacturer;
 
     /** The amount. */
-    private IntegerProperty amount;
+    private int amount;
 
 }
