@@ -13,10 +13,8 @@ import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 @SpringBootApplication
 public class WarehouseApplication {
 
-
 	@Autowired
-	BasketItemRepository repository;
-
+	BasketItemService service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(WarehouseApplication.class, args);
@@ -25,12 +23,10 @@ public class WarehouseApplication {
 	public void doSomethingAfterStartup() {
 		System.out.println("hello world, I have just started up");
 		BasketItemDocument test = BasketItemDocument.builder()
-													.id(1L)
 													.productName("Hello")
 													.purchasingPrice(2)
 													.sellingPrice(1).manufacturer("Manfred").build();
-		repository.save(test);
 
-
+		service.save(test);
 	}
 }

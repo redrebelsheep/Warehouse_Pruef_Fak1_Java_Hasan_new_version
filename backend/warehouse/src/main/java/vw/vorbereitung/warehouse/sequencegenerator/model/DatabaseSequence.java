@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * model class to generate own sequence for mongodb
  *
- * @author: Daniel Nitschke, Marian Kowall
+ * @author:  Marian Kowall
  */
 @Document(collection = "database_sequences")
 public class DatabaseSequence {
