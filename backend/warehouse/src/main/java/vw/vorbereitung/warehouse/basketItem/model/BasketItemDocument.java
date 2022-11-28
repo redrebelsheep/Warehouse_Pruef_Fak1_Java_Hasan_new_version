@@ -3,7 +3,10 @@ package vw.vorbereitung.warehouse.basketItem.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +23,8 @@ public class BasketItemDocument {
     private Long id;
 
     /** The item number. */
-    private int itemNumber;
+    @Indexed(unique = true)
+    private UUID itemNumber;
 
     /** The product name. */
     private String productName;

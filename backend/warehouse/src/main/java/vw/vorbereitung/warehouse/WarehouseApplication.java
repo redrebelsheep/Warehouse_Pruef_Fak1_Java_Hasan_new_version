@@ -10,6 +10,8 @@ import vw.vorbereitung.warehouse.basketItem.BasketItemRepository;
 import vw.vorbereitung.warehouse.basketItem.BasketItemService;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 
+import java.util.UUID;
+
 @SpringBootApplication
 public class WarehouseApplication {
 
@@ -23,6 +25,7 @@ public class WarehouseApplication {
 	public void doSomethingAfterStartup() {
 		System.out.println("hello world, I have just started up");
 		BasketItemDocument test = BasketItemDocument.builder()
+													.itemNumber((UUID.randomUUID()))
 													.productName("Hello")
 													.purchasingPrice(2)
 													.sellingPrice(1).manufacturer("Manfred").build();

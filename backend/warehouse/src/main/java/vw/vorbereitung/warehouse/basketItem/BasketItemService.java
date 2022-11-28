@@ -1,14 +1,13 @@
 package vw.vorbereitung.warehouse.basketItem;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 import vw.vorbereitung.warehouse.sequencegenerator.SequenceGeneratorService;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Service
@@ -27,6 +26,23 @@ public class BasketItemService {
         repository.save(document);
     }
 
+    public BasketItemDocument getBasketItem(UUID itemNumber) {
+        Optional<BasketItemDocument> document = repository.findByItemNumber(itemNumber);
+        if(!document.isPresent()){
 
+        }
+        return document.get();
+    }
+
+    public boolean deletedItem(UUID itemNumber) {
+        if(repository.findByItemNumber(itemNumber).isPresent()){
+            repository.deleteByItemNumber(itemNumber);
+            return true;
+        }
+        return false;
+    }
+    public Optional<BasketItemDocument> checkItemIsPresent(UUID itemNumber) {
+        return repository.findByItemNumber(itemNumber);
+    }
 
 }
