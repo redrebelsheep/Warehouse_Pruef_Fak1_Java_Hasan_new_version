@@ -45,4 +45,7 @@ public class BasketItemService {
         return repository.findByItemNumber(itemNumber);
     }
 
+    public BasketItemDocument saveItem(BasketItemDocument item){
+        return repository.save(item);
+    }
 }
