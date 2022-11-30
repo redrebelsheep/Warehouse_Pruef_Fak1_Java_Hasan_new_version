@@ -13,39 +13,51 @@ import java.util.UUID;
 @Service
 public class BasketItemService {
 
-    private BasketItemRepository repository;
+  private BasketItemRepository repository;
 
-    private SequenceGeneratorService sequenceGeneratorService;
+  private SequenceGeneratorService sequenceGeneratorService;
 
-    public List<BasketItemDocument> getAll(){
-        return repository.findAll();
+  public List<BasketItemDocument> getAll() {
+    return this.repository.findAll();
+  }
+
+  public void save(BasketItemDocument document) {
+    document.setId(
+        this.sequenceGeneratorService.generateSequence(BasketItemDocument.SEQUENCE_NAME));
+    this.repository.save(document);
+  }
+
+  public BasketItemDocument getBasketItem(UUID itemNumber) {
+    Optional<BasketItemDocument> document = this.repository.findByItemNumber(itemNumber);
+    if (!document.isPresent()) {}
+
+    return document.get();
+  }
+
+  public boolean deletedItem(UUID itemNumber) {
+    if (this.repository.findByItemNumber(itemNumber).isPresent()) {
+      this.repository.deleteByItemNumber(itemNumber);
+      return true;
     }
+    return false;
+  }
 
-    public void save(BasketItemDocument document){
-        document.setId(this.sequenceGeneratorService.generateSequence(BasketItemDocument.SEQUENCE_NAME));
-        repository.save(document);
-    }
+  public Optional<BasketItemDocument> checkItemIsPresent(UUID itemNumber) {
+    return this.repository.findByItemNumber(itemNumber);
+  }
 
-    public BasketItemDocument getBasketItem(UUID itemNumber) {
-        Optional<BasketItemDocument> document = repository.findByItemNumber(itemNumber);
-        if(!document.isPresent()){
+  public BasketItemDocument saveItem(BasketItemDocument item) {
+    return this.repository.save(item);
+  }
 
-        }
-        return document.get();
+  public BasketItemDocument updateItem(BasketItemDocument item) {
+    UUID itemNumber = item.getItemNumber();
+    Optional<BasketItemDocument> optionalDocument = this.repository.findByItemNumber(itemNumber);
+    if (!optionalDocument.isPresent()) {
+      return new BasketItemDocument();
     }
-
-    public boolean deletedItem(UUID itemNumber) {
-        if(repository.findByItemNumber(itemNumber).isPresent()){
-            repository.deleteByItemNumber(itemNumber);
-            return true;
-        }
-        return false;
-    }
-    public Optional<BasketItemDocument> checkItemIsPresent(UUID itemNumber) {
-        return repository.findByItemNumber(itemNumber);
-    }
-
-    public BasketItemDocument saveItem(BasketItemDocument item){
-        return repository.save(item);
-    }
+    item.setId(optionalDocument.get().getId());
+    item = this.repository.save(item);
+    return item;
+  }
 }
