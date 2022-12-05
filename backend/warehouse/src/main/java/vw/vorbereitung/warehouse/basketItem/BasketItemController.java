@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vw.vorbereitung.warehouse.basketItem.model.BasketItem;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 
 import java.net.URI;
@@ -34,7 +35,7 @@ public class BasketItemController {
   }
 
   @GetMapping("/item/{itemNumber}")
-  public ResponseEntity<BasketItemDocument> get(@PathVariable UUID itemNumber) {
+  public ResponseEntity<BasketItem> get(@PathVariable UUID itemNumber) {
     this.logger.info("one item was called");
     return ResponseEntity.ok(this.service.getBasketItem(itemNumber));
   }

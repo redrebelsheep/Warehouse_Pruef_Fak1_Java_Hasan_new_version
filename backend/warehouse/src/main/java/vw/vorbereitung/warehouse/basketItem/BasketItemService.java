@@ -2,6 +2,7 @@ package vw.vorbereitung.warehouse.basketItem;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import vw.vorbereitung.warehouse.basketItem.model.BasketItem;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 import vw.vorbereitung.warehouse.sequencegenerator.SequenceGeneratorService;
 
@@ -17,7 +18,12 @@ public class BasketItemService {
 
   private SequenceGeneratorService sequenceGeneratorService;
 
+  private BasketItemModelMapper mapper;
+
   public List<BasketItemDocument> getAll() {
+    //    return this.repository.findAll().stream()
+    //        .map(element -> this.mapper.convertDocumentToPojo(element))
+    //        .collect(Collectors.toList());
     return this.repository.findAll();
   }
 
@@ -27,11 +33,11 @@ public class BasketItemService {
     this.repository.save(document);
   }
 
-  public BasketItemDocument getBasketItem(UUID itemNumber) {
+  public BasketItem getBasketItem(UUID itemNumber) {
     Optional<BasketItemDocument> document = this.repository.findByItemNumber(itemNumber);
     if (!document.isPresent()) {}
 
-    return document.get();
+    return this.mapper.convertDocumentToPojo(document.get());
   }
 
   public boolean deletedItem(UUID itemNumber) {
