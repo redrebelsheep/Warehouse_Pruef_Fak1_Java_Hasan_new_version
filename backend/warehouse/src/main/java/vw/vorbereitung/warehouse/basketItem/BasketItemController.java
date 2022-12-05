@@ -23,7 +23,7 @@ public class BasketItemController {
 
   @RequestMapping("/")
   public String home() {
-    this.logger.info("Logger works");
+    this.logger.info("home method assesd");
     return "HOME";
   }
 

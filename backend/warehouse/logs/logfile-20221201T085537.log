@@ -1,0 +1,2 @@
+#logback.classic pattern: %msg%n
+#logback.classic pattern: %msg%n
