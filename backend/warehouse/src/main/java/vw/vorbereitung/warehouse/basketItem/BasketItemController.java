@@ -29,31 +29,36 @@ public class BasketItemController {
 
   @GetMapping("/item")
   public ResponseEntity<List<BasketItemDocument>> getAll() {
+    this.logger.info("all items was called");
     return new ResponseEntity<List<BasketItemDocument>>(this.service.getAll(), HttpStatus.OK);
   }
 
   @GetMapping("/item/{itemNumber}")
   public ResponseEntity<BasketItemDocument> get(@PathVariable UUID itemNumber) {
+    this.logger.info("one item was called");
     return ResponseEntity.ok(this.service.getBasketItem(itemNumber));
   }
 
   @DeleteMapping("/item/{itemNumber}")
   public ResponseEntity<String> delete(@PathVariable UUID itemNumber) {
     if (this.service.deletedItem(itemNumber)) {
-
+      this.logger.info("delete one item");
       return new ResponseEntity<>("result successful", HttpStatus.OK);
     }
+    this.logger.info("item not found item");
     return new ResponseEntity<>("not Found", HttpStatus.NOT_FOUND);
   }
 
   @PostMapping("/item")
   public ResponseEntity<BasketItemDocument> save(@RequestBody BasketItemDocument item) {
+    this.logger.info("item was saved");
     BasketItemDocument saveItem = this.service.saveItem(item);
     return getBasketItemDocumentResponseEntity(saveItem);
   }
 
   @PutMapping("/item")
   public ResponseEntity<BasketItemDocument> update(@RequestBody BasketItemDocument item) {
+    this.logger.info("item was updated");
     BasketItemDocument saveItem = this.service.updateItem(item);
     return getBasketItemDocumentResponseEntity(saveItem);
   }
