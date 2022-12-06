@@ -51,21 +51,20 @@ public class BasketItemController {
   }
 
   @PostMapping("/item")
-  public ResponseEntity<BasketItemDocument> save(@RequestBody BasketItemDocument item) {
+  public ResponseEntity<BasketItem> save(@RequestBody BasketItem item) {
     this.logger.info("item was saved");
-    BasketItemDocument saveItem = this.service.saveItem(item);
+    BasketItem saveItem = this.service.saveItem(item);
     return getBasketItemDocumentResponseEntity(saveItem);
   }
 
   @PutMapping("/item")
-  public ResponseEntity<BasketItemDocument> update(@RequestBody BasketItemDocument item) {
+  public ResponseEntity<BasketItem> update(@RequestBody BasketItem item) {
     this.logger.info("item was updated");
-    BasketItemDocument saveItem = this.service.updateItem(item);
+    BasketItem saveItem = this.service.updateItem(item);
     return getBasketItemDocumentResponseEntity(saveItem);
   }
 
-  private ResponseEntity<BasketItemDocument> getBasketItemDocumentResponseEntity(
-      BasketItemDocument item) {
+  private ResponseEntity<BasketItem> getBasketItemDocumentResponseEntity(BasketItem item) {
     if (item != null) {
       return ResponseEntity.created(URI.create("/api/item" + item.getItemNumber())).body(item);
     }
