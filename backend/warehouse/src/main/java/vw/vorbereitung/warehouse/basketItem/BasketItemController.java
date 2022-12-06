@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItem;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
@@ -51,14 +52,14 @@ public class BasketItemController {
   }
 
   @PostMapping("/item")
-  public ResponseEntity<BasketItem> save(@RequestBody BasketItem item) {
+  public ResponseEntity<BasketItem> save(@RequestBody @Valid BasketItem item) {
     this.logger.info("item was saved");
     BasketItem saveItem = this.service.saveItem(item);
     return getBasketItemDocumentResponseEntity(saveItem);
   }
 
   @PutMapping("/item")
-  public ResponseEntity<BasketItem> update(@RequestBody BasketItem item) {
+  public ResponseEntity<BasketItem> update(@RequestBody @Valid BasketItem item) {
     this.logger.info("item was updated");
     BasketItem saveItem = this.service.updateItem(item);
     return getBasketItemDocumentResponseEntity(saveItem);
