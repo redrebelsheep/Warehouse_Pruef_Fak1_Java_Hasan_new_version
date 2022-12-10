@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItem;
-import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -23,20 +22,15 @@ public class BasketItemController {
 
   private final Logger logger = LoggerFactory.getLogger(BasketItemController.class);
 
-  @RequestMapping("/")
-  public String home() {
-    this.logger.info("home method assesd");
-    return "HOME";
-  }
-
   @GetMapping("/item")
-  public ResponseEntity<List<BasketItemDocument>> getAll() {
+  public ResponseEntity<List<BasketItem>> getAll() {
     this.logger.info("all items was called");
-    return new ResponseEntity<List<BasketItemDocument>>(this.service.getAll(), HttpStatus.OK);
+    List<BasketItem> list = this.service.getAll();
+    return list.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(list);
   }
 
   @GetMapping("/item/{itemNumber}")
-  public ResponseEntity<BasketItem> get(@PathVariable UUID itemNumber) {
+  public ResponseEntity<BasketItem> getOne(@PathVariable UUID itemNumber) {
     this.logger.info("one item was called");
     return ResponseEntity.ok(this.service.getBasketItem(itemNumber));
   }

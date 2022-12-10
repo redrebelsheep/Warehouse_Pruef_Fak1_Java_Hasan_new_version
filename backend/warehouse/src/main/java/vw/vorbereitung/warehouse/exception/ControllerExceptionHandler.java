@@ -1,4 +1,4 @@
-package vw.vorbereitung.warehouse.basketItem.exception;
+package vw.vorbereitung.warehouse.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
