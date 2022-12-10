@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import vw.vorbereitung.warehouse.basketItem.model.BasketItem;
@@ -21,6 +22,7 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -126,5 +128,29 @@ public class BasketItemControllerTest {
         .perform(get(this.restLink + "/109cfd88-f912-11ec-b939-0242ac12000"))
         // Assert
         .andExpect(status().isNotFound());
+  }
+
+  /**
+   * Post vehicle right vehicle return vehicle status 201 test.
+   *
+   * @throws Exception the exception
+   */
+  @Test
+  @DisplayName(" save right basketItem  | Status: 201 | BasketItemController -> Test")
+  void postBasketItem_right_basketItem_return_basketItem_Status_201_test() throws Exception {
+
+    // Arrange
+    this.pojo.setItemNumber(this.itemNumber);
+
+    String json = this.mapper.writeValueAsString(this.pojo);
+
+    when(this.service.saveItem(any(BasketItem.class))).thenReturn(this.pojo);
+
+    // Act
+    this.mockMvc
+        .perform(post(this.restLink).contentType(MediaType.APPLICATION_JSON).content(json))
+        // Assert
+        .andExpect(status().isCreated())
+        .andExpect(content().json(json));
   }
 }

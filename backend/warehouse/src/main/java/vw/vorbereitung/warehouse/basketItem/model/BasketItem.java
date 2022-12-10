@@ -14,6 +14,7 @@ import java.util.UUID;
 @Valid
 public class BasketItem {
 
+  @NotNull(message = "uuid can not be null")
   private UUID itemNumber;
 
   /** The product name. */
@@ -21,19 +22,19 @@ public class BasketItem {
   private String productName;
 
   /** The purchasing price. */
-  @NotNull(message = " purchasing price. can not be null")
+  @NotNull(message = "purchasing price. can not be null")
   private double purchasingPrice;
 
   /** The selling price. */
-  @NotNull(message = "product name can not be null")
+  @NotNull(message = "selling price can not be null")
   private double sellingPrice;
 
   /** The manufacturer. */
-  @NotNull(message = "product name can not be null")
+  @NotNull(message = "manufacturer name can not be null")
   private String manufacturer;
 
   /** The amount. */
-  @NotNull(message = "product name can not be null")
+  @NotNull(message = "amount can not be null")
   private int amount;
 
   public BasketItem(
