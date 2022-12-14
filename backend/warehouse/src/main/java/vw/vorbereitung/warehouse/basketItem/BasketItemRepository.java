@@ -6,10 +6,9 @@ import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface BasketItemRepository extends MongoRepository <BasketItemDocument, Long> {
+public interface BasketItemRepository extends MongoRepository<BasketItemDocument, Long> {
 
+  Optional<BasketItemDocument> findByItemNumber(UUID identifier);
 
-    Optional<BasketItemDocument> findByItemNumber(UUID identifier);
-
-    void deleteByItemNumber(UUID itemNumber);
+  void deleteByItemNumber(UUID itemNumber);
 }

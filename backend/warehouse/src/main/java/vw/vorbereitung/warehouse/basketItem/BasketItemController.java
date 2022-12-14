@@ -55,8 +55,8 @@ public class BasketItemController {
   @PutMapping("/item")
   public ResponseEntity<BasketItem> update(@RequestBody @Valid BasketItem item) {
     this.logger.info("item was updated");
-    BasketItem saveItem = this.service.updateItem(item);
-    return getBasketItemDocumentResponseEntity(saveItem);
+    BasketItem updateItem = this.service.updateItem(item);
+    return getBasketItemDocumentResponseEntity(updateItem);
   }
 
   private ResponseEntity<BasketItem> getBasketItemDocumentResponseEntity(BasketItem item) {
