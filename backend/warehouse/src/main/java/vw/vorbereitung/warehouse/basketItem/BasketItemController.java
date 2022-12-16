@@ -37,7 +37,7 @@ public class BasketItemController {
 
   @DeleteMapping("/item/{itemNumber}")
   public ResponseEntity<String> delete(@PathVariable UUID itemNumber) {
-    if (this.service.deletedItem(itemNumber)) {
+    if (this.service.deleteItem(itemNumber)) {
       this.logger.info("delete one item");
       return new ResponseEntity<>("result successful", HttpStatus.OK);
     }

@@ -132,7 +132,7 @@ public class BasketItemControllerTest {
   }
 
   @Test
-  @DisplayName(" save right basketItem  | Status: 201 | BasketItemController -> Test")
+  @DisplayName(" saveItem right basketItem  | Status: 201 | BasketItemController -> Test")
   void postBasketItem_right_basketItem_return_basketItem_Status_201_test() throws Exception {
 
     // Arrange
@@ -197,7 +197,7 @@ public class BasketItemControllerTest {
     // Arrange
     String json = this.mapper.writeValueAsString(this.pojo);
 
-    when(this.service.deletedItem(any(UUID.class))).thenReturn(true);
+    when(this.service.deleteItem(any(UUID.class))).thenReturn(true);
 
     // Act
     this.mockMvc
@@ -213,7 +213,7 @@ public class BasketItemControllerTest {
     // Arrange
     String json = this.mapper.writeValueAsString(this.pojo);
 
-    when(this.service.deletedItem(any(UUID.class))).thenReturn(false);
+    when(this.service.deleteItem(any(UUID.class))).thenReturn(false);
 
     // Act
     this.mockMvc

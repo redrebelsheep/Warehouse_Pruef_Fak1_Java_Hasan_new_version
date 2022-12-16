@@ -7,9 +7,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import vw.vorbereitung.warehouse.basketItem.BasketItemService;
-import vw.vorbereitung.warehouse.basketItem.model.BasketItemDocument;
-
-import java.util.UUID;
+import vw.vorbereitung.warehouse.basketItem.model.BasketItem;
 
 @SpringBootApplication
 @EnableSwagger2
@@ -24,15 +22,13 @@ public class WarehouseApplication {
   @EventListener(ApplicationReadyEvent.class)
   public void doSomethingAfterStartup() {
     System.out.println("hello world, I have just started up");
-    BasketItemDocument test =
-        BasketItemDocument.builder()
-            .itemNumber((UUID.randomUUID()))
+    BasketItem test =
+        BasketItem.builder()
             .productName("Hello")
             .purchasingPrice(2)
             .sellingPrice(1)
             .manufacturer("Manfred")
             .build();
-
-    this.service.save(test);
+    this.service.saveItem(test);
   }
 }

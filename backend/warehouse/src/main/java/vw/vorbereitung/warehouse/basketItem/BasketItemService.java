@@ -28,12 +28,6 @@ public class BasketItemService {
         .collect(Collectors.toList());
   }
 
-  public void save(BasketItemDocument document) {
-    document.setId(
-        this.sequenceGeneratorService.generateSequence(BasketItemDocument.SEQUENCE_NAME));
-    this.repository.save(document);
-  }
-
   public BasketItem getBasketItem(UUID itemNumber) {
     Optional<BasketItemDocument> document = this.repository.findByItemNumber(itemNumber);
     if (!document.isPresent()) {
@@ -42,16 +36,12 @@ public class BasketItemService {
     return this.mapper.convertDocumentToPojo(document.get());
   }
 
-  public boolean deletedItem(UUID itemNumber) {
+  public boolean deleteItem(UUID itemNumber) {
     if (this.repository.findByItemNumber(itemNumber).isPresent()) {
       this.repository.deleteByItemNumber(itemNumber);
       return true;
     }
     return false;
-  }
-
-  public Optional<BasketItemDocument> checkItemIsPresent(UUID itemNumber) {
-    return this.repository.findByItemNumber(itemNumber);
   }
 
   public BasketItem saveItem(BasketItem item) {
@@ -68,7 +58,7 @@ public class BasketItemService {
     UUID itemNumber = item.getItemNumber();
     Optional<BasketItemDocument> optionalDocument = this.repository.findByItemNumber(itemNumber);
     if (!optionalDocument.isPresent()) {
-      return new BasketItem();
+      throw new BasketItemItemNumberNotFoundException(itemNumber, HttpStatus.NO_CONTENT);
     }
     document.setId(optionalDocument.get().getId());
     document = this.repository.save(document);
