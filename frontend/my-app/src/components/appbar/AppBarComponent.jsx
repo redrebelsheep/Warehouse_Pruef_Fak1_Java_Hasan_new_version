@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Sidebar from "./sidebar";
-import { useRef } from "react";
+import { SidebarContext } from "./SidebarContext.jsx";
+import { useContext } from "react";
 
-const MenuAppBarComponent = () => {
-  const ref = useRef();
+const AppBarComponent = () => {
+  const msg = useContext(SidebarContext);
 
   return (
     <>
@@ -23,6 +23,9 @@ const MenuAppBarComponent = () => {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
+              onClick={() => {
+                msg();
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -33,9 +36,8 @@ const MenuAppBarComponent = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Sidebar />
     </>
   );
 };
 
-export default MenuAppBarComponent;
+export default AppBarComponent;

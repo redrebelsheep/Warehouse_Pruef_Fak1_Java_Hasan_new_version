@@ -6,21 +6,10 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import { SidebarContext } from "./SidebarContext.jsx";
+import { useContext } from "react";
 
-const Sidebars = () => {
-  const { collapseSidebar, toggleSidebar, toggled } = useProSidebar();
-
-  const toggle = () => {
-    toggleSidebar();
-    if (toggled) {
-      console.log(true);
-      collapseSidebar();
-    } else {
-      console.log(false);
-      collapseSidebar();
-    }
-  };
-
+const SidebarComponent = () => {
   return (
     <>
       <Sidebar
@@ -31,20 +20,6 @@ const Sidebars = () => {
         style={{ height: "100vh" }}
       >
         <Menu>
-          <MenuItem
-            icon={
-              <MenuOutlinedIcon
-                onClick={() => {
-                  toggle();
-                }}
-              />
-            }
-            style={{ textAlign: "center" }}
-          >
-            {" "}
-            <h2>Admin</h2>
-          </MenuItem>
-
           <MenuItem icon={<HomeOutlinedIcon />}>Home</MenuItem>
           <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
           <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
@@ -57,4 +32,4 @@ const Sidebars = () => {
     </>
   );
 };
-export default Sidebars;
+export default SidebarComponent;
