@@ -1,9 +1,9 @@
-import BasketItemsComponent from "../components/basketItem/BasketItemsComponent";
+import BasketItemComponent from "../components/basketItem/BasketItemComponent";
 
 const BasketItemPage = () => {
   return (
     <>
-      <BasketItemsComponent />
+      <BasketItemComponent />
     </>
   );
 };
