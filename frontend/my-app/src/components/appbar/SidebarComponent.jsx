@@ -4,10 +4,7 @@ import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-import { SidebarContext } from "./SidebarContext.jsx";
-import { useContext } from "react";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 
 const SidebarComponent = () => {
   return (

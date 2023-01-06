@@ -1,8 +1,7 @@
 import React from "react";
 import AppBarComponent from "./AppBarComponent";
 import { SidebarContext } from "./SidebarContext";
-import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
-import SidebarComponent from "./SidebarComponent";
+import { useProSidebar } from "react-pro-sidebar";
 
 const MenuComponent = () => {
   const { collapseSidebar, toggleSidebar, toggled } = useProSidebar();
@@ -22,7 +21,6 @@ const MenuComponent = () => {
     <>
       <SidebarContext.Provider value={toggle}>
         <AppBarComponent />
-        <SidebarComponent />
       </SidebarContext.Provider>
     </>
   );
