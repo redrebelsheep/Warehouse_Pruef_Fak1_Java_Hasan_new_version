@@ -30,13 +30,5 @@ public class WarehouseApplication {
             .manufacturer("Manfred")
             .build();
     this.service.saveItem(test);
-    BasketItem test2 =
-        BasketItem.builder()
-            .productName("Hello2")
-            .purchasingPrice(2)
-            .sellingPrice(1)
-            .manufacturer("Manfred2")
-            .build();
-    this.service.saveItem(test2);
   }
 }
