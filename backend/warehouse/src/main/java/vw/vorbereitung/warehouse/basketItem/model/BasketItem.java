@@ -14,18 +14,8 @@ import java.util.UUID;
 @Valid
 public class BasketItem {
 
-  public BasketItem(
-      String productName,
-      double purchasingPrice,
-      double sellingPrice,
-      String manufacturer,
-      int amount) {
-    this.productName = productName;
-    this.purchasingPrice = purchasingPrice;
-    this.sellingPrice = sellingPrice;
-    this.manufacturer = manufacturer;
-    this.amount = amount;
-  }
+  @NotNull(message = "id can not be null")
+  private Long id;
 
   @NotNull(message = "uuid can not be null")
   private UUID itemNumber;

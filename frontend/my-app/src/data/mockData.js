@@ -2,7 +2,7 @@ export const mockDataItems = [
   {
     id: 1,
     itemNumber: "8e22774a-4933-46b8-91f3-30d04e4a122e",
-    productName: "Hello",
+    productName: "Hello1",
     purchasingPrice: 2.0,
     sellingPrice: 1.0,
     manufacturer: "Manfred",
@@ -11,7 +11,7 @@ export const mockDataItems = [
   {
     id: 2,
     itemNumber: "710c3335-d9b8-4678-adbd-aee2a0825d62",
-    productName: "Hello",
+    productName: "Hello2",
     purchasingPrice: 2.0,
     sellingPrice: 1.0,
     manufacturer: "Manfred",
@@ -20,7 +20,7 @@ export const mockDataItems = [
   {
     id: 3,
     itemNumber: "bf5c1727-071b-450c-96e5-561d1c716b36",
-    productName: "Hello",
+    productName: "Hello3",
     purchasingPrice: 2.0,
     sellingPrice: 1.0,
     manufacturer: "Manfred",
@@ -29,7 +29,7 @@ export const mockDataItems = [
   {
     id: 4,
     itemNumber: "b0af1e3a-3f8e-451a-b8bc-027d5ec73ffa",
-    productName: "Hello",
+    productName: "Hello3",
     purchasingPrice: 2.0,
     sellingPrice: 1.0,
     manufacturer: "Manfred",

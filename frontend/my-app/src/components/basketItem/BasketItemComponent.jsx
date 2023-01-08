@@ -1,49 +1,70 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../Theme/Theme";
-import { mockDataInvoices } from "../../data/mockData";
+import { mockDataInvoices, mockDataItems } from "../../data/mockData";
+import Button from "@mui/material/Button";
 import Header from "../basic/Header";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useSelector } from "react-redux";
 
 const BasketItemComponent = () => {
+  const items = useSelector((state) => state.items.items);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const rows = items.map((item) => ({
+    id: item.id,
+    productName: item.productName,
+    purchasingPrice: item.purchasingPrice,
+  }));
+
+  const output = () => {
+    console.log(items);
+    items.map((e) => console.log(e));
+  };
+
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "productName",
+      headerName: "productName",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "cost",
-      headerName: "Cost",
+      field: "purchasingPrice",
+      headerName: "purchasingPrice",
       flex: 1,
       renderCell: (params) => (
         <Typography color={colors.greenAccent[500]}>
-          ${params.row.cost}
+          ${params.row.purchasingPrice}
         </Typography>
       ),
     },
     {
-      field: "date",
-      headerName: "Date",
-      flex: 1,
+      field: "delete",
+      headerName: "Delete",
+      width: 150,
+      headerAlign: "center",
+      align: "center",
+      renderCell: (cellValues) => (
+        <strong>
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            sx={{ marginLeft: 1, mt: 3, mb: 2, bgcolor: "primary.main" }}
+          >
+            <DeleteForeverIcon />
+          </Button>
+        </strong>
+      ),
     },
   ];
 
   return (
     <Box m="20px">
+      {console.log(items)};
       <Header title="INVOICES" subtitle="List of Invoice Balances" />
       <Box
         m="40px 0 0 0"
@@ -74,8 +95,9 @@ const BasketItemComponent = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+        <DataGrid checkboxSelection rows={rows} columns={columns} />
       </Box>
+      <Button onClick={output}>output</Button>
     </Box>
   );
 };
