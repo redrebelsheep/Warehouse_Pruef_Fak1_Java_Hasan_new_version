@@ -1,10 +1,6 @@
 import MainPage from "./pages/MainPage";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchItems,
-  chaneItemName,
-  outputState,
-} from "./features/basketItem/basketItemSlice";
+import { fetchItems } from "./features/basketItem/basketItemSlice";
 import { useEffect } from "react";
 
 const App = () => {

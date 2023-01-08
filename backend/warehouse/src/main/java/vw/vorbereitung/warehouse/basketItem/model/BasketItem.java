@@ -14,10 +14,9 @@ import java.util.UUID;
 @Valid
 public class BasketItem {
 
-  @NotNull(message = "id can not be null")
-  private Long id;
+//  @NotNull(message = "id can not be null")
+//  private Long id;
 
-  @NotNull(message = "uuid can not be null")
   private UUID itemNumber;
 
   /** The product name. */

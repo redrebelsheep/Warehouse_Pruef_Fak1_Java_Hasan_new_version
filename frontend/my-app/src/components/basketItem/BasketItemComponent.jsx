@@ -13,10 +13,16 @@ const BasketItemComponent = () => {
   const colors = tokens(theme.palette.mode);
 
   const rows = items.map((item) => ({
-    id: item.id,
+    id: item.itemNumber,
     productName: item.productName,
     purchasingPrice: item.purchasingPrice,
+    itemNumber: item.itemNumber,
   }));
+
+  const onRowsSelectionHandler = (ids) => {
+    const selectedRowsData = ids.map((id) => rows.find((row) => row.id === id));
+    console.log(selectedRowsData);
+  };
 
   const output = () => {
     console.log(items);
@@ -24,7 +30,6 @@ const BasketItemComponent = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID" },
     {
       field: "productName",
       headerName: "productName",
@@ -95,7 +100,12 @@ const BasketItemComponent = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={rows} columns={columns} />
+        <DataGrid
+          checkboxSelection
+          rows={rows}
+          columns={columns}
+          onSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
+        />
       </Box>
       <Button onClick={output}>output</Button>
     </Box>

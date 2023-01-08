@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
+@CrossOrigin(origins = {"http://localhost:3001"})
 @RestController
 @RequestMapping("/api")
 public class BasketItemController {
